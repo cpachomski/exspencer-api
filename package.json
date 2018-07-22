@@ -1,0 +1,19 @@
+{
+	"name": "exspencer-graphql-api",
+	"version": "0.0.0",
+	"description": "GraphQL API for ExSpencer",
+	"main": "index.js",
+	"author": "Chris Pachomski",
+	"license": "MIT",
+	"dependencies": {
+		"chalk": "^2.4.1",
+		"dotenv": "^6.0.0",
+		"graphql-yoga": "^1.14.12",
+		"lodash": "^4.17.10",
+		"mysql": "^2.16.0"
+	},
+	"scripts": {
+		"dev": "NODE_ENV=development nodemon index.js",
+		"start": "NODE_ENV=production node index.js"
+	}
+}

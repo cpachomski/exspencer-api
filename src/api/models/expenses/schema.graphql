@@ -1,0 +1,36 @@
+type Expense {
+	id: String!
+	userId: String!
+	createdAt: String
+	lastUpdated: String
+	cost: Float!
+}
+
+input GetExpensesInput {
+	userId: String!
+}
+
+input CreatExpenseInput {
+	id: String!
+	userId: String!
+	cost: Float!
+}
+
+type UpdateExepenseInput {
+	userId: String!
+	cost: Float!
+}
+
+type DeleteExpenseInput {
+	id: String!
+}
+
+extend type Query {
+	expenses(input: GetExpensesInput!): [Expense]!
+}
+
+# type Mutation {
+# 	creatExpence(input: CreatExpenceInput): Expense!
+# 	updateExpence(input: UpdateExepenceInput): Expence!
+# 	deleteExpence(input: DeleteExpenceInput): Expence!
+# }
