@@ -1,32 +1,32 @@
 type Expense {
-	id: String!
-	userId: String!
-	createdAt: String
-	lastUpdated: String
-	cost: Float!
+  id: String!
+  userId: String!
+  createdAt: String
+  lastUpdated: String
+  cost: Float!
 }
 
 input GetExpensesInput {
-	userId: String!
+  userId: String!
 }
 
 input CreatExpenseInput {
-	id: String!
-	userId: String!
-	cost: Float!
+  id: String!
+  userId: String!
+  cost: Float!
 }
 
 type UpdateExepenseInput {
-	userId: String!
-	cost: Float!
+  userId: String!
+  cost: Float!
 }
 
 type DeleteExpenseInput {
-	id: String!
+  id: String!
 }
 
 extend type Query {
-	expenses(input: GetExpensesInput!): [Expense]!
+  expenses(input: GetExpensesInput!): [Expense]!
 }
 
 # type Mutation {

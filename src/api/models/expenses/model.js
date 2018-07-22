@@ -3,18 +3,18 @@ const db = require('../../../db');
 const MODEL = 'expenses';
 
 const create = async ({ id, userId, cost }) => {
-	db.query(
-		`
+  db.query(
+    `
         INSERT INTO ${MODEL} SET ?
     `,
-		{ id, user_id: userId, cost }
-	).then(async (err, rows) => {
-		if (err) {
-			throw new Error(`${MODEL}.create: ${err}`);
-		}
-		const r = await row;
-		console.log(r);
-	});
+    { id, user_id: userId, cost }
+  ).then(async (err, rows) => {
+    if (err) {
+      throw new Error(`${MODEL}.create: ${err}`);
+    }
+    const r = await row;
+    console.log(r);
+  });
 };
 
 const createTable = `
@@ -31,6 +31,6 @@ const createTable = `
     `;
 
 module.exports = {
-	create,
-	createTable
+  create,
+  createTable
 };
