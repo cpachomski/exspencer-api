@@ -19,9 +19,14 @@ exports.create = async ({ id, email, authProvider }) => {
 exports.getOne = async ({ id }) => {
   try {
     const rows = await db.query(`SELECT * FROM ${MODEL} WHERE ID = ?`, [id]);
-    return rows[0];
+
+    if (rows.length === 0) {
+      throw new Error(`No user for id: ${id}`);
+    } else {
+      return rows[0];
+    }
   } catch (err) {
-    throw new Error(`${MODEL}.getOne: ${err}`);
+    throw new Error(`${MODEL}.getOne ${err}`);
   }
 };
 
@@ -30,7 +35,7 @@ exports.getAll = async () => {
     const rows = await db.query(`SELECT * FROM ${MODEL};`, null);
     return rows;
   } catch (err) {
-    throw new Error(`${MODEL}.getAll: ${err}`);
+    throw new Error(`${MODEL}.getAll ${err}`);
   }
 };
 
