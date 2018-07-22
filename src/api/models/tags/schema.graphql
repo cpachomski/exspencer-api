@@ -1,37 +1,37 @@
 type Tag {
-	id: String!
-	userId: String!
+	id: Int!
+	userId: Int!
 	name: String!
 	color: String
 }
 
 input GetTagsInput {
-	userId: String!
+	userId: Int!
 }
 
 input CreateTagInput {
-	id: String!
-	userId: String!
+	id: Int!
+	userId: Int!
 	name: String!
 	color: String
 }
 
 input UpdateTagInput {
-	userId: String
+	userId: Int
 	name: String
 	color: String
 }
 
 input DeleteTagInput {
-	id: String!
+	id: Int!
 }
 
 extend type Query {
     tags(input: GetTagsInput) [Tag]!
 }
 
-# extend type Mutation {
-#     createTag(input: CreateTagInput): Tag!
-#     updateTag(input: UpdateTagInput): Tag!
-#     deleteTag(input: DeleteTagInput): Tag!
-# }
+extend type Mutation {
+    createTag(input: CreateTagInput): Tag!
+    updateTag(input: UpdateTagInput): Tag!
+    deleteTag(input: DeleteTagInput): Tag!
+}
