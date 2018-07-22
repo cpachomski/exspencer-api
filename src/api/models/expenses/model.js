@@ -76,3 +76,5 @@ exports.createTable = `
             FOREIGN KEY (user_id) REFERENCES users(id)
         );
     `;
+
+// ADD INDEDES FOR user_id, id
