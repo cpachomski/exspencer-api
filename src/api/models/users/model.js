@@ -58,6 +58,7 @@ exports.updateOne = async ({ id, email, authProvider }) => {
   }
 };
 
+// UPDATE TO DELETE TAGS AND EXPENSES WHEN THIS HAPPENS (ALSO FIGURE OUT COGNITO DELETION)
 exports.deleteOne = async ({ id }) => {
   try {
     const rows = await db.query(`DELETE FROM ${MODEL} WHERE ?`, { id });
@@ -77,3 +78,5 @@ exports.createTable = `
             auth_provider VARCHAR(30)
         );
     `;
+
+// add index for id

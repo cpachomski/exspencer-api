@@ -5,6 +5,7 @@ type User {
   updatedAt: String
   authProvider: String
   expenses: [Expense]
+  tags: [Tag]
 }
 
 input GetUserInput {

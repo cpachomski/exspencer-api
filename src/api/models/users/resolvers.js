@@ -1,10 +1,11 @@
 const user = async (_, args, ctx) => {
   const user = await ctx.models.users.getOne(args.input);
+  const tags = await ctx.models.tags.getAllByUser({ userId: args.input.id });
   const expenses = await ctx.models.expenses.getAllByUser({
     userId: args.input.id
   });
 
-  return { ...user, ...{ expenses } };
+  return { ...user, ...{ expenses, tags } };
 };
 
 const users = async (_, args, ctx) => {
