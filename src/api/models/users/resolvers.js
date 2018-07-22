@@ -8,16 +8,21 @@ const users = async (_, args, ctx) => {
 	return users;
 };
 
-const createUser = async (_, args, ctx, info) => {
+const createUser = async (_, args, ctx) => {
 	const newUser = await ctx.models.users.create(args.input);
 	return {
 		id: newUser.insertId
 	};
 };
 
-const updateUser = async (_, args, ctx, info) => {
+const updateUser = async (_, args, ctx) => {
 	const updatedUser = await ctx.models.users.updateOne(args.input);
 	return updatedUser;
+};
+
+const deleteUser = async (_, args, ctx) => {
+	const deletedUser = await ctx.models.users.deleteOne(args.input);
+	return deletedUser;
 };
 
 module.exports = {
@@ -27,7 +32,8 @@ module.exports = {
 	},
 	Mutation: {
 		createUser,
-		updateUser
+		updateUser,
+		deleteUser
 	},
 	User: {
 		createdAt(user) {

@@ -53,6 +53,15 @@ exports.updateOne = async ({ id, email, authProvider }) => {
 	}
 };
 
+exports.deleteOne = async ({ id }) => {
+	try {
+		const rows = await db.query(`DELETE FROM ${MODEL} WHERE ?`, { id });
+		return true;
+	} catch (err) {
+		throw new Error(`${MODEL}.deleteOne: ${err}`);
+	}
+};
+
 exports.createTable = `
         CREATE TABLE IF NOT EXISTS ${MODEL}
         (
