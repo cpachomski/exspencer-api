@@ -11,25 +11,27 @@ const db = new Database({
   port: process.env.RDS_PORT
 });
 
-db.connection.connect(err => {
-  if (err) {
-    throw new Error(`Database connection failed: ${err}`);
-  }
+if (['production', 'development'].includes(process.env.NODE_ENV)) {
+  db.connection.connect(err => {
+    if (err) {
+      throw new Error(`Database connection failed: ${err}`);
+    }
 
-  console.log(chalk.cyan(`Creating tables if need be...`));
-  fs.readdirSync(path.resolve(__dirname, '../api/models'))
-    .filter(f => ['expenses', 'users', 'tags'].includes(f))
-    .forEach(f => {
-      const { createTable } = require(`../api/models/${f}/model`);
+    console.log(chalk.cyan(`Creating tables if need be...`));
+    fs.readdirSync(path.resolve(__dirname, '../api/models'))
+      .filter(f => ['expenses', 'users', 'tags', 'accounts'].includes(f))
+      .forEach(f => {
+        const { createTable } = require(`../api/models/${f}/model`);
 
-      db.query(createTable, (err, res, fields) => {
-        if (err) {
-          throw new Error(`${f}.createTable: ${err}`);
-        } else {
-          console.log(chalk.cyan(`${f}.createTable Success!`));
-        }
+        db.query(createTable, (err, res, fields) => {
+          if (err) {
+            throw new Error(`${f}.createTable: ${err}`);
+          } else {
+            console.log(chalk.cyan(`${f}.createTable Success!`));
+          }
+        });
       });
-    });
-});
+  });
+}
 
 module.exports = db;
