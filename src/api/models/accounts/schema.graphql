@@ -1,0 +1,38 @@
+type Account {
+  id: Int!
+  userId: Int!
+  name: String!
+  balance: Float!
+  createdAt: String
+  updatedAt: String
+}
+
+input GetAccountsInput {
+  userId: Int!
+}
+
+input CreateAccountInput {
+  userId: Int!
+  name: String!
+  balance: Float
+}
+
+input UpdateAccountInput {
+  userId: Int!
+  name: String
+  balance: Float
+}
+
+input DeleteAccountInput {
+  id: Int!
+}
+
+extend type Query {
+  accounts(input: GetAccountsInput): [Account]!
+}
+
+extend type Mutation {
+  createAccount(input: CreateAccountInput): Account!
+  updateAccount(input: UpdateAccountInput): Account!
+  deleteAccount(input: DeleteAccountInput): Boolean
+}
