@@ -19,7 +19,9 @@ if (['production', 'development'].includes(process.env.NODE_ENV)) {
 
     console.log(chalk.cyan(`Creating tables if need be...`));
     fs.readdirSync(path.resolve(__dirname, '../api/models'))
-      .filter(f => ['expenses', 'users', 'tags', 'accounts'].includes(f))
+      .filter(f =>
+        ['expenses', 'users', 'tags', 'accounts', 'expenses_tags'].includes(f)
+      )
       .forEach(f => {
         const { createTable } = require(`../api/models/${f}/model`);
 
