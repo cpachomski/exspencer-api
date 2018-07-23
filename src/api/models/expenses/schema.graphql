@@ -1,6 +1,7 @@
 type Expense {
   id: Int!
   userId: Int!
+  accountId: Int
   name: String!
   cost: Float!
   createdAt: String
@@ -17,12 +18,14 @@ input GetExpensesInput {
 
 input CreateExpenseInput {
   userId: Int!
+  accountId: Int
   name: String!
   cost: Float!
 }
 
 input UpdateExpenseInput {
   id: Int!
+  accountId: Int
   name: String
   cost: Float
 }

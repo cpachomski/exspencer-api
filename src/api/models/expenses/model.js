@@ -2,11 +2,12 @@ const db = require('../../../db');
 
 const MODEL = 'expenses';
 
-exports.create = async ({ userId, name, cost }) => {
+exports.create = async ({ userId, accountId, name, cost }) => {
   try {
     const now = new Date();
     return await db.query(`INSERT INTO ${MODEL} SET ?`, {
       user_id: userId,
+      account_id: accountId,
       name,
       cost,
       created_at: now,
@@ -37,11 +38,14 @@ exports.getAllByUser = async ({ userId }) => {
   }
 };
 
-exports.updateOne = async ({ id, name, cost }) => {
+exports.updateOne = async ({ id, userId, accountId, name, cost }) => {
   const updateSet = {};
 
+  userId ? (updateSet.user_id = userId) : null;
+  accountId ? (updateSet.account_id = accountId) : null;
   name ? (updateSet.name = name) : null;
   cost ? (updateSet.cost = cost) : null;
+
   updateSet.updated_at = new Date();
 
   try {
@@ -69,11 +73,13 @@ exports.createTable = `
         (
             id INT AUTO_INCREMENT PRIMARY KEY,
             user_id INT NOT NULL,
+            account_id INT NOT NULL,
             created_at DATETIME,
             updated_at DATETIME,
             cost FLOAT,
             name VARCHAR(255) NOT NULL,
-            FOREIGN KEY (user_id) REFERENCES users(id)
+            FOREIGN KEY (user_id) REFERENCES users(id),
+            FOREIGN KEY (account_id) REFERENCES accounts(id)
         );
     `;
 
