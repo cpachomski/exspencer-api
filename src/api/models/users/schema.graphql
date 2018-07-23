@@ -6,6 +6,7 @@ type User {
   authProvider: String
   expenses: [Expense]
   tags: [Tag]
+  accounts: [Account]
 }
 
 input GetUserInput {

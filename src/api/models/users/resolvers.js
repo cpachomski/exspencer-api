@@ -4,8 +4,11 @@ const user = async (_, args, ctx) => {
   const expenses = await ctx.models.expenses.getAllByUser({
     userId: args.input.id
   });
+  const accounts = await ctx.models.accounts.getAllByUser({
+    userId: args.input.id
+  });
 
-  return { ...user, ...{ expenses, tags } };
+  return { ...user, ...{ expenses, tags, accounts } };
 };
 
 const users = async (_, args, ctx) => {
